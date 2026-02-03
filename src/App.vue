@@ -148,7 +148,7 @@ body {
   box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1); /* iOS原生聚焦高亮阴影，柔和不刺眼 */
 }
 
-/* 🔥 iOS原生文本域样式：与下拉框视觉统一，精准匹配系统风格 */
+/* 🔥 iOS原生文本域样式：支持上下拉动调整高度，保持视觉统一 */
 .textarea {
   width: 100%;
   padding: 16px;
@@ -157,10 +157,12 @@ body {
   font-family: 'SF Mono', Monaco, Consolas, monospace;
   font-size: 14px;
   color: #1D1D1F;
-  min-height: 280px;
-  max-height: 280px;
+  /* 1. 调整高度范围，允许上下拉动，移除固定相等的min/max-height */
+  min-height: 120px; /* 最小高度，保证不会拉得太矮 */
+  max-height: 1000px; /* 最大高度，防止超出页面可视区域 */
   overflow-y: auto;
-  resize: none;
+  /* 2. 允许垂直调整大小（仅上下拉动），移除resize: none; */
+  resize: vertical;
   background: #FAFAFA;
   white-space: pre-wrap;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -256,7 +258,5 @@ body {
   color: #86868B;
   padding: 28px;
   font-size: 14px;
-  background: #FAFAFA;
-  border-radius: 12px;
 }
 </style>
